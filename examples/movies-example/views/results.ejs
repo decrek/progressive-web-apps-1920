@@ -1,0 +1,17 @@
+<html>
+<%- include('partials/head') %>
+<body>
+
+<%- include('partials/header') %>
+
+<h1>Results for <%= query %></h1>
+
+<ul>
+    <% movieData.results.forEach(result => { %>
+        <li>
+            <a href="/<%= result.id %>"><%= result.original_title %></a>
+        </li>
+    <% }) %>
+</ul>
+</body>
+</html>
