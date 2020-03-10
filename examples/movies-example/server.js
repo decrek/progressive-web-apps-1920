@@ -49,10 +49,16 @@ app.get('/search', (req, res) => {
   fetch(`https://api.themoviedb.org/3/search/movie?query=${req.query.query}&api_key=${process.env.MOVIEDB_TOKEN}`)
     .then(async response => {
       const movieData = await response.json()
-      res.render('results', {
-        query: req.query.query, // We use this for the page title, see views/partials/head.ejs
+      const templateData = {
+        query: req.query.query,
         movieData
-      });
+      }
+
+      if (req.query.async) {
+        res.render('partials/result-list', { query: req.query.query, results: movieData.results })
+      } else {
+        res.render('results', templateData);
+      }
     })
 })
 
