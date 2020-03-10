@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "prestart": "npm run build:css",
     "start": "nodemon server.js",
+    "prebuild:css": "rimraf ./static",
+    "build:css": "node scripts/build-css.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Declan Rek",
@@ -16,6 +19,11 @@
   },
   "devDependencies": {
     "dotenv": "^8.2.0",
-    "nodemon": "^2.0.2"
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-clean-css": "^4.2.0",
+    "gulp-concat": "^2.6.1",
+    "nodemon": "^2.0.2",
+    "rimraf": "^3.0.2"
   }
 }
