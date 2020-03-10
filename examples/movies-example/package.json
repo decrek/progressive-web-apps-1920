@@ -4,10 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "prestart": "npm run build:css",
+    "prestart": "npm run build:css && npm run build:js",
     "start": "nodemon server.js",
     "prebuild:css": "rimraf ./static",
     "build:css": "node scripts/build-css.js",
+    "build:js": "node scripts/build-js.js",
+    "watch:js": "chokidar 'src/js/*.js' --command 'npm run build:js'",
+    "watch:css": "chokidar 'src/css/*.css' --command 'npm run build:css'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Declan Rek",
@@ -18,6 +21,7 @@
     "node-fetch": "^2.6.0"
   },
   "devDependencies": {
+    "chokidar-cli": "^2.1.0",
     "dotenv": "^8.2.0",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^7.0.1",
