@@ -29,6 +29,10 @@ app.get('/movies', (req, res) => {
     })
 })
 
+app.get('/offline', (req, res) => {
+    res.render('offline')
+})
+
 app.get('/movies/:id', (req, res) => {
   Promise.all([
     fetch(`https://api.themoviedb.org/3/movie/${req.params.id}?api_key=${process.env.MOVIEDB_TOKEN}`).then(response => response.json()),
