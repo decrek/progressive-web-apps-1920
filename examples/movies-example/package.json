@@ -4,13 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "prestart": "npm run build:css && npm run build:js",
+    "prestart": "npm run build",
     "start": "nodemon server.js",
-    "prebuild:css": "rimraf ./static",
+    "prebuild": "rimraf ./static",
+    "build": "npm-run-all build:*",
     "build:css": "node scripts/build-css.js",
     "build:js": "node scripts/build-js.js",
+    "build:assets": "node scripts/build-static-assets.js",
+    "watch": "run-p watch:*",
     "watch:js": "chokidar 'src/js/*.js' --command 'npm run build:js'",
     "watch:css": "chokidar 'src/css/*.css' --command 'npm run build:css'",
+    "watch:assets": "chokidar 'src/**/*.*' --command 'npm run build:assets'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Declan Rek",
@@ -28,6 +32,7 @@
     "gulp-clean-css": "^4.2.0",
     "gulp-concat": "^2.6.1",
     "nodemon": "^2.0.2",
+    "npm-run-all": "^4.1.5",
     "rimraf": "^3.0.2"
   }
 }
