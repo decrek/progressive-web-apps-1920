@@ -2,6 +2,7 @@ require('dotenv').config()
 
 const express = require('express')
 const fetch = require('node-fetch')
+const revManifest = require('./static/rev-manifest')
 
 const app = express()
 const port = 3000
@@ -15,6 +16,7 @@ app.set('views', 'views');
 app.get('/', (req, res) => {
   res.render('home', {
     title: 'Home',
+    revManifest
   });
 })
 
@@ -24,13 +26,16 @@ app.get('/movies', (req, res) => {
       const movieData = await response.json()
       res.render('overview', {
         title: 'Movies',
-        movieData
+        movieData,
+        revManifest
       });
     })
 })
 
 app.get('/offline', (req, res) => {
-    res.render('offline')
+    res.render('offline', {
+      revManifest
+    })
 })
 
 app.get('/movies/:id', (req, res) => {
@@ -45,6 +50,7 @@ app.get('/movies/:id', (req, res) => {
           ...details,
           videos: videos.results
         },
+        revManifest
       });
     })
 })
@@ -55,7 +61,8 @@ app.get('/search', (req, res) => {
       const movieData = await response.json()
       const templateData = {
         query: req.query.query,
-        movieData
+        movieData,
+        revManifest
       }
 
       if (req.query.async) {
