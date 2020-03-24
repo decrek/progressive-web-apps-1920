@@ -7,6 +7,11 @@ const revManifest = require('./static/rev-manifest')
 const app = express()
 const port = 3000
 
+app.use(/.*-[0-9a-f]{10}\..*/, (req, res, next) => {
+  res.setHeader('Cache-Control', 'max-age=365000000, immutable');
+  next();
+});
+
 app.use(express.static('static'))
 
 app.set('view engine', 'ejs');
@@ -33,9 +38,9 @@ app.get('/movies', (req, res) => {
 })
 
 app.get('/offline', (req, res) => {
-    res.render('offline', {
-      revManifest
-    })
+  res.render('offline', {
+    revManifest
+  })
 })
 
 app.get('/movies/:id', (req, res) => {
