@@ -2,10 +2,13 @@ require('dotenv').config()
 
 const express = require('express')
 const fetch = require('node-fetch')
+const compression = require('compression')
 const revManifest = require('./static/rev-manifest')
 
 const app = express()
 const port = 3000
+
+app.use(compression())
 
 app.use(/.*-[0-9a-f]{10}\..*/, (req, res, next) => {
   res.setHeader('Cache-Control', 'max-age=365000000, immutable');
