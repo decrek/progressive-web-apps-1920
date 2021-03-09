@@ -12,9 +12,10 @@
     "build:static:assets": "node scripts/build-static-assets.js",
     "revision": "node scripts/revision-hash.js && node scripts/revision-replace.js",
     "watch": "run-p watch:*",
-    "watch:js": "chokidar 'src/js/*.js' --command 'npm run build:js'",
-    "watch:css": "chokidar 'src/css/*.css' --command 'npm run build:css'",
-    "watch:assets": "chokidar 'src/**/*.*' --command 'npm run build:assets'"
+    "watch:html": "chokidar 'src/**/*.ejs' --command 'npm run build:html'",
+    "watch:js": "chokidar 'src/js/*.js' --command 'npm run build:static:js'",
+    "watch:css": "chokidar 'src/css/*.css' --command 'npm run build:static:css'",
+    "watch:assets": "chokidar 'src/**/*.*' --command 'npm run build:static:assets'"
   },
   "author": "Declan Rek",
   "license": "ISC",
