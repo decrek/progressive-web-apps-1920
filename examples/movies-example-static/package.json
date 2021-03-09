@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "prestart": "npm run build",
+    "start": "serve ./dist",
     "prebuild": "rimraf ./dist",
     "build": "npm-run-all build:static:* && npm run revision && npm run build:html",
     "build:html": "node scripts/build-html.js",
@@ -20,9 +22,9 @@
   "author": "Declan Rek",
   "license": "ISC",
   "devDependencies": {
-    "ejs": "^3.0.1",
     "chokidar-cli": "^2.1.0",
     "dotenv": "^8.2.0",
+    "ejs": "^3.0.1",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^7.0.1",
     "gulp-clean-css": "^4.2.0",
@@ -33,6 +35,7 @@
     "gulp-rev-replace": "^0.4.4",
     "node-fetch": "^2.6.1",
     "npm-run-all": "^4.1.5",
-    "rimraf": "^3.0.2"
+    "rimraf": "^3.0.2",
+    "serve": "^11.3.2"
   }
 }
